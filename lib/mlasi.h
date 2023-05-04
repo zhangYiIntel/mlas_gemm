@@ -268,7 +268,7 @@ operator!=(const MLFloat16& left, const MLFloat16& right)
 
 #endif  // BUILD_MLAS_NO_ONNXRUNTIME
 
-static_assert(sizeof(MLAS_FP16) == FP16_SIZE);
+static_assert(sizeof(MLAS_FP16) == FP16_SIZE, "FP16 is 2 byte-long");
 
 
 //
