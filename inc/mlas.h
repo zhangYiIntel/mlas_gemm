@@ -20,6 +20,7 @@ Abstract:
 #include <cstddef>
 #include <cstdlib>
 #include <cstdint>
+#include <functional>
 
 //
 // Define the calling convention for Windows targets.
@@ -111,13 +112,19 @@ typedef enum { CblasLeft=141, CblasRight=142} CBLAS_SIDE;
 //
 
 namespace onnxruntime {
-    namespace concurrency {
-        class ThreadPool;
-    };
     struct MLFloat16;
-};  // namespace onnxruntime
+} // namespace onnxruntime
 
-using MLAS_THREADPOOL = onnxruntime::concurrency::ThreadPool;
+namespace ov {
+    namespace cpu {
+        class ThreadPool;
+        size_t getTotalThreads();
+        void TrySimpleParallelFor(const std::ptrdiff_t total,
+            const std::function<void(std::ptrdiff_t)>& fn);
+    };
+};  // namespace ov
+
+using MLAS_THREADPOOL = ov::cpu::ThreadPool;
 
 
 //

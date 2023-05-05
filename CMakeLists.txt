@@ -198,4 +198,5 @@ set_target_properties(onnxruntime_mlas PROPERTIES FOLDER "ONNXRuntime")
 add_compile_definitions(
     BUILD_MLAS_NO_ONNXRUNTIME
   )
+set_property(TARGET onnxruntime_mlas PROPERTY POSITION_INDEPENDENT_CODE ON)
 
